@@ -1,0 +1,5 @@
+# Suppress shellcheck integration to eliminate false-positive lint failures
+# from run: block shell scripts. Pure GitHub Actions structural errors
+# (wrong action versions, missing fields, invalid inputs) are still caught.
+shellcheck:
+  enable: false

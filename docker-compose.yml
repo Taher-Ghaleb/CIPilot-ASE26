@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=/api
+    networks:
+      - cigrate-network
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5200:5200"
+    environment:
+      # Ollama host - use host.docker.internal on Mac/Windows, or host IP on Linux
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}
+    networks:
+      - cigrate-network
+    restart: unless-stopped
+    # Uncomment for Linux to access host Ollama
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+
+networks:
+  cigrate-network:
+    driver: bridge

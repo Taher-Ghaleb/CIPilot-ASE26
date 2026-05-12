@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "CIPilot",
+  "version": "1.0",
+  "description": "CIPilot – detect, analyze, and migrate CI/CD configurations in GitHub repositories.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*",
+    "https://cipilot-api.onrender.com/*",
+    "http://localhost:5200/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/*"],
+      "js": [
+        "utils.js",
+        "banner.js",
+        "ciDetection.js",
+        "content.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

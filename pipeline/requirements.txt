@@ -1,0 +1,13 @@
+# Pipeline dependencies
+# Most are shared with backend, but listed here for standalone use
+
+requests>=2.31.0
+httpx>=0.24.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+rich>=13.0.0  # For beautiful console output
+tqdm>=4.65.0  # Progress bars
+aiohttp>=3.8.0  # Async HTTP for parallel processing
+asyncio-throttle>=1.0.0  # Rate limiting
+openai>=1.0.0  # For LLM-based workflow fixing
